@@ -28,16 +28,22 @@ class CultivaresController extends Controller
         $cultivar = new Cultivar();
         $cultivarNova = new Cultivar();
 
+        $rendimentoFibra = $this->getValor($request->input('rendimentoFibra'));
+        $pesoCapulho = $this->getValor($request->input('pesoMedioCapulho'));
+        $comprimentoFibra = $this->getValor($request->input('comprimentoFibra'));
+        $micronaire = $this->getValor($request->input('micronaire'));
+        $resistencia = $this->getValor($request->input('resistencia'));
+
         $query = [
           'nome' => $request->input('nome'),
           'altura_planta' => $request->get('selectAltura'),
           'fertilidade' => $request->get('selectFertilidade'),
           'regulador' => $request->get('selectRegulador'),
-          'rendimento_fibra' => doubleval(str_replace(',', '.', $request->input('rendimentoFibra'))),
-          'peso_capulho' => doubleval(str_replace(',', '.', $request->input('pesoMedioCapulho'))),
-          'comprimento_fibra' => doubleval(str_replace(',', '.', $request->input('comprimentoFibra'))),
-          'micronaire' => doubleval(str_replace(',', '.', $request->input('micronaire'))),
-          'resistencia' => doubleval(str_replace(',', '.', $request->input('resistencia'))),
+          'rendimento_fibra' => $rendimentoFibra,
+          'peso_capulho' => $pesoCapulho,
+          'comprimento_fibra' => $comprimentoFibra,
+          'micronaire' => $micronaire,
+          'resistencia' => $resistencia,
           'cic_id' => intval($request->input('selectCiclo'))
       ];
 
@@ -53,6 +59,18 @@ class CultivaresController extends Controller
     public function nova()
     {
         return view('cultivares.nova');
+    }
+
+    public function getValor($entrada)
+    {
+        // se a entrada veio sem vírgula
+        if(strlen($entrada) < 4)
+          $entrada .= ",00";
+
+        $entrada = str_replace(",",".", $entrada);
+        $valor = (double)$entrada;
+
+        return $valor;
     }
 
     public function arrayCultivares()
