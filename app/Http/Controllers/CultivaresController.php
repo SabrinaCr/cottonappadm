@@ -25,15 +25,34 @@ class CultivaresController extends Controller
 
     public function salvar(Request $request)
     {
-        $tolerancia = new Cultivar();
-        $tolerancia = $tolerancia->create($request->all());
+        $cultivar = new Cultivar();
+        $cultivarNova = new Cultivar();
 
-        \Session::flash('mensagem_sucesso', 'Tolerância cadastrada com sucesso.');
+        $query = [
+          'nome' => $request->input('nome'),
+          'altura_planta' => $request->get('selectAltura'),
+          'fertilidade' => $request->get('selectFertilidade'),
+          'regulador' => $request->get('selectRegulador'),
+          'rendimento_fibra' => doubleval(str_replace(',', '.', $request->input('rendimentoFibra'))),
+          'peso_capulho' => doubleval(str_replace(',', '.', $request->input('pesoMedioCapulho'))),
+          'comprimento_fibra' => doubleval(str_replace(',', '.', $request->input('comprimentoFibra'))),
+          'micronaire' => doubleval(str_replace(',', '.', $request->input('micronaire'))),
+          'resistencia' => doubleval(str_replace(',', '.', $request->input('resistencia'))),
+          'cic_id' => intval($request->input('selectCiclo'))
+      ];
 
-        if($request->is('tolerancias/salvar'))
-          return Redirect::to('tolerancias');
+        $cultivar= $cultivar->create($query);
+        \Session::flash('mensagem_sucesso', 'Cultivar cadastrada com sucesso.');
+
+        if($request->is('cultivares/salvar'))
+          return Redirect::to('cultivares');
         else
-          return Redirect::to('tolerancias/lista/nova');
+          return Redirect::to('cultivares/lista');
+    }
+
+    public function nova()
+    {
+        return view('cultivares.nova');
     }
 
     public function arrayCultivares()
@@ -64,17 +83,17 @@ class CultivaresController extends Controller
         return $doencas;
     }
 
-    public function arrayTolerancias()
-    {
-        $tolerancias_table = Tolerancia::get();
-        $tolerancias = array();
-
-        foreach($tolerancias_table as $tolerancia)
-        {
-          if($tolerancia->status != 'I')
-              array_push($tolerancias, $tolerancia);
-        }
-
-        return $tolerancias;
-    }
+    // public function arrayTolerancias()
+    // {
+    //     $tolerancias_table = Tolerancia::get();
+    //     $tolerancias = array();
+    //
+    //     foreach($tolerancias_table as $tolerancia)
+    //     {
+    //       if($tolerancia->status != 'I')
+    //           array_push($tolerancias, $tolerancia);
+    //     }
+    //
+    //     return $tolerancias;
+    // }
 }

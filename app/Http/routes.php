@@ -71,4 +71,18 @@ Route::group(['middlewareGroups' => ['web']], function(){
   Route::any('epocas_semeadura/lista/buscar/', 'EpocasSemeaduraController@buscar');
 
   Route::any('cultivares/', 'CultivaresController@index');
+  Route::any('cultivares/nova', 'CultivaresController@nova');
+  Route::any('cultivares/salvar', 'CultivaresController@salvar');
+
+  // Route::any('epocas_semeadura/', 'EpocasSemeaduraController@index');
+  // Route::any('epocas_semeadura/salvar', 'EpocasSemeaduraController@salvar');
+  // Route::any('epocas_semeadura/lista', 'EpocasSemeaduraController@lista');
+  // Route::any('epocas_semeadura/lista/salvar', 'EpocasSemeaduraController@salvar');
+  // Route::patch('epocas_semeadura/lista/{epoca_semeadura}', 'EpocasSemeaduraController@atualizar');
+  // Route::any('epocas_semeadura/{epoca_semeadura}/editar', 'EpocasSemeaduraController@editar');
+  // Route::any('epocas_semeadura/lista/{epoca_semeadura}/editar', 'EpocasSemeaduraController@editar');
+  // Route::post('epocas_semeadura/{epoca_semeadura}/excluir', 'EpocasSemeaduraController@excluir');
+  // Route::any('epocas_semeadura/lista/nova', 'EpocasSemeaduraController@nova');
+  // Route::any('epocas_semeadura/lista/buscar/', 'EpocasSemeaduraController@buscar');
+
 });

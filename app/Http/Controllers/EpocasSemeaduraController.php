@@ -32,7 +32,7 @@ class EpocasSemeaduraController extends Controller
         \Session::flash('mensagem_sucesso', 'Época de Semeadura cadastrada com sucesso.');
 
         if($request->is('epocas_semeadura/salvar'))
-          return Redirect::to('epocasSemeadura');
+          return Redirect::to('epocas_semeadura');
         else
           return Redirect::to('epocas_semeadura/lista/nova');
     }

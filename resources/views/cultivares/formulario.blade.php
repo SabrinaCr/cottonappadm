@@ -1,5 +1,3 @@
-
-
 <!-- FORMULÁRIO -->
 <div class="row">
       <div class="col-md-8 col-md-offset-3">
@@ -7,8 +5,13 @@
 
               <!-- cabeçalho painel formulário -->
               <div class="panel-heading">
-                <h2>NOVA CULTIVAR</h2>
-                <h4>Adicionar nova cultivar à base de dados</h4>
+                @if(Request::is('*/editar'))
+                  <h3>ALTERAR CULTIVAR</h3>
+                  Alterar ciclo selecionado
+                @else
+                  <h2>NOVA CULTIVAR</h2>
+                  <h4>Adicionar nova cultivar à base de dados</h4>
+                @endif
               </div>
 
               <!-- corpo painel com formulário -->
@@ -24,9 +27,9 @@
                 <!-- FORMULÁRIO -->
                 <!-- Conteúdo Lista Selects -->
                 @php
-                  $alturas = array('Alta', 'Média', 'Baixa', 'Baixa/Média', 'Média/Alta');
-                  $fertilidades = array('Alta', 'Média', 'Baixa', 'Baixa/Média', 'Média/Alta');
-                  $reguladores = array('Alta', 'Média', 'Baixa', 'Baixa/Média', 'Média/Alta');
+                  $alturas = ['Alta'=>'Alta', 'Media'=>'Média', 'Baixa'=>'Baixa', 'BaixaMedia'=>'Baixa/Média', 'MediaAlta'=>'Média/Alta'];
+                  $fertilidades = ['Alta'=>'Alta', 'Media'=>'Média', 'Baixa'=>'Baixa', 'BaixaMedia'=>'Baixa/Média', 'MediaAlta'=>'Média/Alta'];
+                  $reguladores = ['Alta'=>'Alta', 'Media'=>'Média', 'Baixa'=>'Baixa', 'BaixaMedia'=>'Baixa/Média', 'MediaAlta'=>'Média/Alta'];
                 @endphp
 
                 <!-- abrir formulário -->
@@ -74,12 +77,12 @@
                 <div class="form-inline">
                   <div class="form-group">
                     {!! Form::label('rendimentoFibra', 'Rendimento da Fibra (%)') !!}<br />
-                    {!! Form::input('text', 'rendimentoFibra', null, ['style' => 'width: 300px; margin-right: 20px;', 'class'=>'form-control', 'required']) !!}
+                    {!! Form::input('text', 'rendimentoFibra', null, ['placeholder'=>'0,00', 'style' => 'width: 300px; margin-right: 20px;', 'class'=>'form-control myNumber', 'required']) !!}
                   </div>
 
                   <div class="form-group">
                     {!! Form::label('comprimentoFibra', 'Comprimento da Fibra (mm)') !!}<br />
-                    {!! Form::input('text', 'comprimentoFibra', null, ['style' => 'width: 300px; margin-right: 20px;', 'class'=>'form-control', 'required']) !!}
+                    {!! Form::input('text', 'comprimentoFibra', null, ['placeholder'=>'0,00', 'style' => 'width: 300px; margin-right: 20px;', 'class'=>'form-control myNumber', 'required']) !!}
                   </div>
                 </div>
                 <br />
@@ -88,17 +91,17 @@
                 <div class="form-inline">
                   <div class="form-group">
                     {!! Form::label('pesoMedioCapulho', 'Peso Médio do Capulho (g)') !!}<br />
-                    {!! Form::input('text', 'pesoMedioCapulho', null, ['style' => 'width: 260px; margin-right: 20px;', 'class'=>'form-control', 'required']) !!}
+                    {!! Form::input('text', 'pesoMedioCapulho', null, ['placeholder'=>'0,00', 'style' => 'width: 260px; margin-right: 20px;', 'class'=>'form-control myNumber', 'required']) !!}
                   </div>
 
                   <div class="form-group">
                     {!! Form::label('micronaire', 'Micronaire') !!}<br />
-                    {!! Form::input('text', 'micronaire', null, ['style' => 'width: 260px; margin-right: 20px;', 'class'=>'form-control', 'required']) !!}
+                    {!! Form::input('text', 'micronaire', null, ['placeholder'=>'0,00', 'style' => 'width: 260px; margin-right: 20px;', 'class'=>'form-control myNumber', 'required']) !!}
                   </div>
 
                   <div class="form-group">
                     {!! Form::label('resistencia', 'Resistência') !!}<br />
-                    {!! Form::input('text', 'resistencia', null, ['style' => 'width: 260px; margin-right: 20px;', 'class'=>'form-control', 'required']) !!}
+                    {!! Form::input('text', 'resistencia', null, ['placeholder'=>'0,00', 'style' => 'width: 260px; margin-right: 20px;', 'class'=>'form-control myNumber', 'required']) !!}
                   </div>
                 </div>
                 <br />

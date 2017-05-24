@@ -16,9 +16,9 @@
                 @endif
 
                 @if(Request::is('*/editar'))
-                  {!! Form::model($epoca_semeadura, ['method'=>'PATCH', 'url'=>'epocasSemeadura/'.$epoca_semeadura->id]) !!}
+                  {!! Form::model($epoca_semeadura, ['method'=>'PATCH', 'url'=>'epocas_semeadura/'.$epoca_semeadura->id]) !!}
                 @else
-                  {!! Form::open(['url' => 'epocasSemeadura/salvar']) !!}
+                  {!! Form::open(['url' => 'epocas_semeadura/salvar']) !!}
                 @endif
 
                 {!! Form::label('descricao', 'Descrição') !!}
