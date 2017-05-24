@@ -25,6 +25,13 @@
                 </a>
                 @endif
 
+                <br /><br /><br />
+                @if(Session::has('mensagem_sucesso'))
+                  <div class="alert alert-success">
+                    {{ Session::get('mensagem_sucesso') }}
+                  </div>
+                @endif
+
               </div>
             </div>
           </div>

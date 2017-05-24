@@ -13,6 +13,7 @@
                           <ul class="nav nav-pills nav-stacked">
                             <li class="submenu"><a href="{{ url('/cultivares') }}">Nova</a></li>
                             <li class="submenu"><a href="{{ url('/cultivares/lista') }}">Listar</a></li>
+                            <li class="submenu"><a href="{{ url('/cultivares/buscar') }}">Buscar</a></li>
                           </ul>
                         </div>
                       </div>

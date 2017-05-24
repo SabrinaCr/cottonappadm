@@ -30,6 +30,20 @@
                   $alturas = ['Alta'=>'Alta', 'Media'=>'Média', 'Baixa'=>'Baixa', 'BaixaMedia'=>'Baixa/Média', 'MediaAlta'=>'Média/Alta'];
                   $fertilidades = ['Alta'=>'Alta', 'Media'=>'Média', 'Baixa'=>'Baixa', 'BaixaMedia'=>'Baixa/Média', 'MediaAlta'=>'Média/Alta'];
                   $reguladores = ['Alta'=>'Alta', 'Media'=>'Média', 'Baixa'=>'Baixa', 'BaixaMedia'=>'Baixa/Média', 'MediaAlta'=>'Média/Alta'];
+
+                  $alturaSelected = null;
+                  $fertilidadeSelected = null;
+                  $reguladorSelected = null;
+                  $cicloSelected = null;
+
+                  if(Request::is('*/editar'))
+                  {
+                      $cicloSelected = $cultivar->cic_id;
+                      $alturaSelected = $cultivar->altura_planta;
+                      $fertilidadeSelected = $cultivar->fertilidade;
+                      $reguladorSelected = $cultivar->regulador;
+                  }
+
                 @endphp
 
                 <!-- abrir formulário -->
@@ -49,7 +63,7 @@
 
                   <div class="form-group">
                     {!! Form::label('ciclo', 'Ciclo') !!}<br />
-                    {{ Form::select('selectCiclo', $ciclos, null, array('style' => 'width: 300px;', 'class' => 'form-control')) }}
+                    {{ Form::select('selectCiclo', $ciclos, $cicloSelected, array('style' => 'width: 300px;', 'class' => 'form-control')) }}
                   </div>
                 </div>
                 <br />
@@ -58,17 +72,17 @@
                 <div class="form-inline">
                   <div class="form-group">
                     {!! Form::label('altura', 'Altura da Planta') !!}<br />
-                    {{ Form::select('selectAltura', $alturas, null, array('style' => 'width: 260px; margin-right: 20px;', 'class' => 'form-control')) }}
+                    {{ Form::select('selectAltura', $alturas, $alturaSelected, array('style' => 'width: 260px; margin-right: 20px;', 'class' => 'form-control')) }}
                   </div>
 
                   <div class="form-group">
                     {!! Form::label('fertilidade', 'Exigência em Fertilidade') !!}<br />
-                    {{ Form::select('selectFertilidade', $fertilidades, null, array('style' => 'width: 260px; margin-right: 20px;', 'class' => 'form-control')) }}
+                    {{ Form::select('selectFertilidade', $fertilidades, $fertilidadeSelected, array('style' => 'width: 260px; margin-right: 20px;', 'class' => 'form-control')) }}
                   </div>
 
                   <div class="form-group">
                     {!! Form::label('regulador', 'Exigência em Regulador') !!}<br />
-                    {{ Form::select('selectRegulador', $reguladores, null, array('style' => 'width: 260px; margin-right: 20px;', 'class' => 'form-control')) }}
+                    {{ Form::select('selectRegulador', $reguladores, $reguladorSelected, array('style' => 'width: 260px; margin-right: 20px;', 'class' => 'form-control')) }}
                   </div>
                 </div>
                 <br />
@@ -76,13 +90,13 @@
                 <!-- Terceira linha do Formulário -->
                 <div class="form-inline">
                   <div class="form-group">
-                    {!! Form::label('rendimentoFibra', 'Rendimento da Fibra (%)') !!}<br />
-                    {!! Form::input('text', 'rendimentoFibra', null, ['placeholder'=>'0,00', 'style' => 'width: 300px; margin-right: 20px;', 'class'=>'form-control myNumber', 'required']) !!}
+                    {!! Form::label('rendimento_fibra', 'Rendimento da Fibra (%)') !!}<br />
+                    {!! Form::input('text', 'rendimento_fibra', null, ['placeholder'=>'0,00', 'style' => 'width: 300px; margin-right: 20px;', 'class'=>'form-control myNumber', 'required']) !!}
                   </div>
 
                   <div class="form-group">
-                    {!! Form::label('comprimentoFibra', 'Comprimento da Fibra (mm)') !!}<br />
-                    {!! Form::input('text', 'comprimentoFibra', null, ['placeholder'=>'0,00', 'style' => 'width: 300px; margin-right: 20px;', 'class'=>'form-control myNumber', 'required']) !!}
+                    {!! Form::label('comprimento_fibra', 'Comprimento da Fibra (mm)') !!}<br />
+                    {!! Form::input('text', 'comprimento_fibra', null, ['placeholder'=>'0,00', 'style' => 'width: 300px; margin-right: 20px;', 'class'=>'form-control myNumber', 'required']) !!}
                   </div>
                 </div>
                 <br />
@@ -90,8 +104,8 @@
                 <!-- Quarta linha do Formulário -->
                 <div class="form-inline">
                   <div class="form-group">
-                    {!! Form::label('pesoMedioCapulho', 'Peso Médio do Capulho (g)') !!}<br />
-                    {!! Form::input('text', 'pesoMedioCapulho', null, ['placeholder'=>'0,00', 'style' => 'width: 260px; margin-right: 20px;', 'class'=>'form-control myNumber', 'required']) !!}
+                    {!! Form::label('peso_capulho', 'Peso Médio do Capulho (g)') !!}<br />
+                    {!! Form::input('text', 'peso_capulho', null, ['placeholder'=>'0,00', 'style' => 'width: 260px; margin-right: 20px;', 'class'=>'form-control myNumber', 'required']) !!}
                   </div>
 
                   <div class="form-group">
